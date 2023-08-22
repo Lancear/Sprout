@@ -25,7 +25,7 @@
       <option value={state.value}>{state.title}</option>
     {/each}
   </select>
-  <select bind:value={selectedColor} class="w-1/4 mt-2 p-1 text-sm rounded-md bg-{selectedColor ? `${selectedColor}-200 text-slate-600` : 'slate-600 text-slate-400'}">
+  <select bind:value={selectedColor} class="w-1/4 mt-2 p-1 text-sm rounded-md bg-{selectedColor ? `${colors[selectedColor]}-200 text-slate-600` : 'slate-600 text-slate-400'}">
     <option value={null} class="bg-slate-600 text-slate-400">All Colors</option>
     {#each colors as color, colorIdx}
       <option value={colorIdx} class="bg-{color}-200">{color.charAt(0).toLocaleUpperCase()}{color.substring(1)}</option>
