@@ -1,21 +1,16 @@
 <script>
-  import { getIdea, saveIdea } from '../../../database';
+  import { saveIdea } from '../../../database';
   import IdeaEditor from '../../../components/idea-editor.svelte';
 
   /** @type {import('./$types').PageData} */
   export let data;
-  const idea = data.id !== 'new' 
-    ? getIdea(parseInt(data.id)).then(idea => { if (idea === undefined) throw new Error("Idea not found!"); return idea; }) 
-    : Promise.resolve(undefined);
 
-  idea.then(idea => {
-    if (idea) {
-      idea.viewedAt = new Date();
-      saveIdea(idea);
-    }
-  });
+  if (data.idea) {
+    data.idea.viewedAt = new Date();
+    saveIdea(data.idea);
+  }
 
-  if (data.id === "new") {
+  if (!data.idea) {
     const parsedUrl = new URL(window.location.toString());
     // searchParams.get() will properly handle decoding the values.
     console.log('Title shared: ' + parsedUrl.searchParams.get('title'));
@@ -32,12 +27,5 @@
 </script>
 
 <div class="p-2 h-full flex flex-col gap-2">
-  {#await idea}
-    <IdeaEditor />
-  {:then idea}
-    <IdeaEditor idea={idea} onSave={data.id === 'new' ? (id) => window.history.pushState(null, "", `/ideas/${id}`) : undefined} />
-  {:catch error}
-    <p>🧇 Seems like something went wrong: {error?.message}</p>
-    <IdeaEditor />
-  {/await}
+  <IdeaEditor idea={data.idea} onSave={data.idea === undefined ? (id) => window.history.pushState(null, "", `/ideas/${id}`) : undefined} />
 </div>
