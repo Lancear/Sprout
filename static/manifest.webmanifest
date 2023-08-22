@@ -7,6 +7,15 @@
   "display": "standalone",
   "background_color": "#64748b",
   "theme_color": "#475569",
+  "share_target": {
+    "action": "/ideas/new",
+    "method": "GET",
+    "params": {
+      "title": "title",
+      "text": "text",
+      "url": "url"
+    }
+  },
   "icons": [
     {
       "src": "/icon.png",
