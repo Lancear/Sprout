@@ -1,0 +1,22 @@
+{
+  "id": "sprout.app",
+  "start_url": "/",
+  "short_name": "Sprout",
+  "name": "Sprout",
+  "description": "Where ideas sprout and grow!",
+  "display": "standalone",
+  "background_color": "#64748b",
+  "theme_color": "#475569",
+  "icons": [
+    {
+      "src": "/icon.png",
+      "type": "image/png",
+      "sizes": "192x192"
+    },
+    {
+      "src": "/icon-512.png",
+      "type": "image/png",
+      "sizes": "512x512"
+    }
+  ]
+}
